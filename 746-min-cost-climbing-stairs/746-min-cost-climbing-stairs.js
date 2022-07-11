@@ -19,15 +19,24 @@ var minCostClimbingStairs = function(cost) {
 //   return Math.min(costToStep(cost.length - 2), costToStep(cost.length - 1));
   
 //  === Tabulation ===
-  const n = cost.length
-  let costToStep = Array(n).fill(0);
+//   const n = cost.length
+//   let costToStep = Array(n).fill(0);
   
-  costToStep[0] = cost[0];
-  costToStep[1] = cost[1];
+//   costToStep[0] = cost[0];
+//   costToStep[1] = cost[1];
+  
+//   for (let i = 2; i < n; i++) {
+//     costToStep[i] = cost[i] + Math.min(costToStep[i - 1], costToStep[i - 2]);
+//   }
+  
+//   return Math.min(costToStep[n - 2], costToStep[n - 1]);
+  
+//  === Tabulation In-Place ===
+  const n = cost.length;
   
   for (let i = 2; i < n; i++) {
-    costToStep[i] = cost[i] + Math.min(costToStep[i - 1], costToStep[i - 2]);
+    cost[i] += Math.min(cost[i - 1], cost[i - 2]);
   }
   
-  return Math.min(costToStep[n - 2], costToStep[n - 1]);
+  return Math.min(cost[n - 2], cost[n - 1]);
 };
