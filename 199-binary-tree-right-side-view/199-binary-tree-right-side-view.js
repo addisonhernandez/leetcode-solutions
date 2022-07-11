@@ -19,6 +19,8 @@ var rightSideView = function(root) {
 //   root && queue.push([root, 0]);
   
 //   while (queue.length) {
+//     // a real queue would have O(1) shift (dequeue)
+//     // JS Arrays actually have O(n) shift
 //     const [node, depth] = queue.shift();
     
 //     visibleNodes[depth] = node.val;
