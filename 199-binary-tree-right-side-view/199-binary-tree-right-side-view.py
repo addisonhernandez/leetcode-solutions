@@ -23,17 +23,27 @@ class Solution:
 #             node.right and queue.append((node.right, depth + 1))
 #             node.left and queue.append((node.left, depth + 1))
         
-        # === DFS (right to left) ===
-        def dfs(node: Optional[TreeNode], depth: int):
-            if not node:
-                return
+#         # === DFS (right to left) ===
+#         def dfs(node: Optional[TreeNode], depth: int):
+#             if not node:
+#                 return
             
-            if depth == len(visibleNodes):
-                visibleNodes.append(node.val)
+#             if depth == len(visibleNodes):
+#                 visibleNodes.append(node.val)
             
-            dfs(node.right, depth + 1)
-            dfs(node.left, depth + 1)
+#             dfs(node.right, depth + 1)
+#             dfs(node.left, depth + 1)
         
-        dfs(root, 0)
+#         dfs(root, 0)
+
+        # === Pythonic BFS ===
+        level = []
+        
+        if root:
+            level.append(root)
+        
+        while level:
+            visibleNodes.append(level[-1].val)
+            level = [child for node in level for child in (node.left, node.right) if child]
         
         return visibleNodes
