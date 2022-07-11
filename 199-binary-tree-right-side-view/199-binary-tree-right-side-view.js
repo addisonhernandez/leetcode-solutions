@@ -11,12 +11,10 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-  if (!root) {
-    return [];
-  }
-  
   const visibleNodes = [];
-  const queue = [[root, 0]];
+  const queue = [];
+  
+  root && queue.push([root, 0]);
   
   while (queue.length) {
     const [node, depth] = queue.shift();
