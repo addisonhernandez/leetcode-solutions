@@ -12,18 +12,30 @@
  */
 var rightSideView = function(root) {
   const visibleNodes = [];
-  const queue = [];
   
-  root && queue.push([root, 0]);
+//   === BFS ===
+//   const queue = [];
   
-  while (queue.length) {
-    const [node, depth] = queue.shift();
+//   root && queue.push([root, 0]);
+  
+//   while (queue.length) {
+//     const [node, depth] = queue.shift();
     
+//     visibleNodes[depth] = node.val;
+    
+//     node.left && queue.push([node.left, depth + 1]);
+//     node.right && queue.push([node.right, depth + 1]);
+//   }
+  
+//  === DFS ===
+  (function dfs(node, depth) {
+    if (!node) {
+      return;
+    }
     visibleNodes[depth] = node.val;
-    
-    node.left && queue.push([node.left, depth + 1]);
-    node.right && queue.push([node.right, depth + 1]);
-  }
+    dfs(node.left, depth + 1);
+    dfs(node.right, depth + 1);
+  })(root, 0);
   
   return visibleNodes;
 };
