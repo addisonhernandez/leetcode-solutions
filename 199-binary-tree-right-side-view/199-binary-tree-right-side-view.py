@@ -8,19 +8,32 @@ class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         visibleNodes = []
         
-        # === BFS (right to left) ===
-        queue = deque();
+#         # === BFS (right to left) ===
+#         queue = deque();
         
-        if root:
-            queue.append((root, 0))
+#         if root:
+#             queue.append((root, 0))
         
-        while queue:
-            node, depth = queue.popleft()
+#         while queue:
+#             node, depth = queue.popleft()
+            
+#             if depth == len(visibleNodes):
+#                 visibleNodes.append(node.val)
+            
+#             node.right and queue.append((node.right, depth + 1))
+#             node.left and queue.append((node.left, depth + 1))
+        
+        # === DFS (right to left) ===
+        def dfs(node: Optional[TreeNode], depth: int):
+            if not node:
+                return
             
             if depth == len(visibleNodes):
                 visibleNodes.append(node.val)
             
-            node.right and queue.append((node.right, depth + 1))
-            node.left and queue.append((node.left, depth + 1))
+            dfs(node.right, depth + 1)
+            dfs(node.left, depth + 1)
+        
+        dfs(root, 0)
         
         return visibleNodes
