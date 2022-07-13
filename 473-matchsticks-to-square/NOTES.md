@@ -10,6 +10,7 @@ A valid square is found when all sides are equal to one quarter of the sum of al
 2. Since we know the target length for each side (sum of all matchstick lengths / 4), if any side grows longer than that target length we've failed to build a valid square.
 3. In order to fail early and prevent trying unnecessary combinations, use the longest matchsticks first by sorting the matchstick array in descending order.
 4. Use short-circuit logic wherever possible to prevent enumerating unnecessary combinations.
+5. Sort the combinations of top, bottom, left and right sides to prune symmetric combinations early.
 ​
 ## Complexity
 In the theoretical worst case, we're generating all subsets of N members (where N is the number of matchsticks in the input) and doing it four times, leaving us with exponential time complexity **O(4^N)**, though the optimization strategies prune the decision tree significantly.
