@@ -1,8 +1,8 @@
 class Solution:
     def makesquare(self, matchsticks: List[int]) -> bool:
-        total_stick_length = sum(stick for stick in matchsticks)
+        total = sum(matchsticks)
         
-        target, rem = divmod(total_stick_length, 4)
+        target, rem = divmod(total, 4)
         
         if rem:
             return False
@@ -13,12 +13,16 @@ class Solution:
         def assign_sticks(index, top, bot, left, right) -> bool:
             nonlocal target
             
-            if top == bot == left == right == target:
+            sides = (top, bot, left, right)
+
+            if all(side == target for side in sides):
                 return True
-            if any(side > target for side in (top, bot, left, right)):
+            if any(side > target for side in sides):
                 return False
             
             next_stick = matchsticks[index]
+            
+            top, bot, left, right = sorted(sides)
             
             return (
                 assign_sticks(index + 1, top + next_stick, bot, left, right) or
