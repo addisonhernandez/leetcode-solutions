@@ -6,13 +6,24 @@
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        root_val = preorder.pop(0);
-        root_ind = inorder.index(root_val)
+        pre_ind = 0
         
-        left_subtree = inorder[:root_ind]
-        right_subtree = inorder[root_ind + 1:]
+        val_to_ind = {v: i for i, v in enumerate(inorder)}
         
-        left_child = self.buildTree(preorder, left_subtree) if left_subtree else None
-        right_child = self.buildTree(preorder, right_subtree) if right_subtree else None
+        def build(head: int, tail: int) -> Optional[TreeNode]:
+            if head > tail:
+                return None
+            
+            nonlocal pre_ind
+            
+            root_val = preorder[pre_ind]
+            root_ind = val_to_ind[root_val]
+            pre_ind += 1
+            
+            return TreeNode(
+                root_val,
+                build(head, root_ind - 1),
+                build(root_ind + 1, tail)
+            )
         
-        return TreeNode(root_val, left_child, right_child)
+        return build(0, len(preorder) - 1)
