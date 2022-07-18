@@ -5,19 +5,19 @@
  */
 var kInversePairs = function(n, k) {
   const modulus = 1e9 + 7;
-  const cache = Array.from(Array(n + 1), () => Array(k + 1).fill(0));
+  const cache = Array.from(Array(2), () => Array(k + 1).fill(0));
   
   cache[0][0] = 1;
-  for (let elems = 1; elems <= n; elems++) {
-    cache[elems][0] = 1;
-    for (let pairs = 1; pairs <= k; pairs++) {
-      cache[elems][pairs] = cache[elems - 1][pairs] + cache[elems][pairs - 1];
-      if (pairs >= elems) {
-        cache[elems][pairs] -= cache[elems - 1][pairs - elems];
-      }
-      cache[elems][pairs] = (cache[elems][pairs] + modulus) % modulus
-    }
-  }
+  cache[1][0] = 1;
   
-  return cache[n][k];
+  for (let elems = 1; elems <= n; elems++)
+    for (let pairs = 1; pairs <= k; pairs++) {
+      cache[elems % 2][pairs] = cache[(elems - 1) % 2][pairs] + cache[elems % 2][pairs - 1];
+      if (pairs >= elems) {
+        cache[elems % 2][pairs] -= cache[(elems - 1) % 2][pairs - elems];
+      }
+      cache[elems % 2][pairs] = (cache[elems % 2][pairs] + modulus) % modulus;
+    }
+  
+  return cache[n % 2][k];
 };
