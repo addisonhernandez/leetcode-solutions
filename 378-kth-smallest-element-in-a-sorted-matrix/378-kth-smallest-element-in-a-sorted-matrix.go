@@ -7,7 +7,7 @@ func kthSmallest(matrix [][]int, k int) int {
         flatMatrix = append(flatMatrix, matrix[i]...)
     }
     
-    sort.Slice(flatMatrix, func(i, j int) bool { return flatMatrix[i] < flatMatrix[j] })
+    sort.Ints(flatMatrix)
     
     return flatMatrix[k - 1]
 }
