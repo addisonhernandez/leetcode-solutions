@@ -2,17 +2,9 @@ class Solution:
     def countVowelPermutation(self, n: int) -> int:
         modulus = 10**9 + 7
         
-        # curr = [1] * 5
-        # prev = [*curr]
-        curr = {c:1 for c in "aeiou"}
+        a, e, i, o, u = 1, 1, 1, 1, 1
         
-        # while n > 1:
         for _ in range(1, n):
-            prev = {**curr}
-            curr["a"] = prev["e"] + prev["i"] + prev["u"]
-            curr["e"] = prev["a"] + prev["i"]
-            curr["i"] = prev["e"] + prev["o"]
-            curr["o"] = prev["i"]
-            curr["u"] = prev["i"] + prev["o"]
+            a, e, i, o, u = (e + i + u), (a + i), (e + o), i, (i + o)
         
-        return sum(curr.values()) % modulus
+        return sum((a, e, i, o, u)) % modulus
