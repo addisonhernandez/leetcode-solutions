@@ -1,10 +1,3 @@
-# function isValidBST(root: TreeNode | null, minVal: number = -Infinity, maxVal: number = Infinity): boolean {
-#   return (
-#     (root.val > minVal && root.val < maxVal) &&
-#     (!root.left || isValidBST(root.left, minVal, root.val)) && 
-#     (!root.right || isValidBST(root.right, root.val, maxVal))
-#   );
-# };
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
