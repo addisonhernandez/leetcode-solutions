@@ -11,7 +11,7 @@ func goodNodes(root *TreeNode) int {
 }
 
 func dfs(root *TreeNode, pathMax int) int {
-    if (root == nil) {
+    if root == nil {
         return 0
     }
     
