@@ -10,22 +10,12 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var goodNodes = function(root) {
-  let numGoods = 0;
+var goodNodes = function(root, max = -Infinity) {
+  if (!root) {
+    return 0;
+  }
   
-  (function dfs(node, pathMax) {
-    if (!node) {
-      return;
-    }
-    
-    if (node.val >= pathMax) {
-      numGoods += 1;
-      pathMax = node.val;
-    }
-    
-    dfs(node.left, pathMax);
-    dfs(node.right, pathMax);
-  })(root, root.val);
-  
-  return numGoods;
+  return (root.val >= max) + 
+    goodNodes(root.left, Math.max(root.val, max)) + 
+    goodNodes(root.right, Math.max(root.val, max));
 };
