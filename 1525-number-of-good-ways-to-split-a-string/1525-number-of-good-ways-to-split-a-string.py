@@ -9,7 +9,8 @@ class Solution:
             right[c] -= 1
             left[c] += 1
             
-            right = +right
+            if right[c] == 0:
+                del right[c]
             
             if len(left) == len(right):
                 splits += 1
