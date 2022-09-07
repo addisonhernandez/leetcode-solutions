@@ -15,14 +15,14 @@ var tree2str = function(root) {
         return ''
     }
     
-    repr = '' + root.val
+    const repr = '' + root.val
     
-    if (root.left || root.right) {
-        repr += `(${tree2str(root.left)})`
-    }
-    if (root.right) {
-        repr += `(${tree2str(root.right)})`
-    }
+    const left = root.left || root.right
+        ? `(${tree2str(root.left)})`
+        : ''
+    const right = root.right
+        ? `(${tree2str(root.right)})`
+        : ''
     
-    return repr
+    return repr + left + right
 };
