@@ -11,9 +11,15 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    if (!root) {
-        return []
+    const traversal = []
+    
+    const traverse = function (node) {
+        node.left && traverse(node.left)
+        traversal.push(node.val)
+        node.right && traverse(node.right)
     }
     
-    return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
+    root && traverse(root)
+    
+    return traversal
 };
