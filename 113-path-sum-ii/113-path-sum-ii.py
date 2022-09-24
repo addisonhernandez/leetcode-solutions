@@ -11,16 +11,20 @@ class Solution:
         if root is None:
             return paths
         
-        def dfs(node: TreeNode, path: List[int], path_sum: int):
-            if node.left is None and node.right is None:
-                if path_sum + node.val == targetSum:
-                    paths.append(path + [node.val])
+        def dfs(node: TreeNode | None, path: List[int], path_sum: int):
+            if node is None:
                 return
-            
-            if node.left is not None:
-                dfs(node.left, path + [node.val], path_sum + node.val)
-            if node.right is not None:
-                dfs(node.right, path + [node.val], path_sum + node.val)
+
+            next_path = path + [node.val]
+            next_sum = path_sum + node.val
+
+            if node.left is None and node.right is None:
+                if next_sum == targetSum:
+                    paths.append(next_path)
+                return
+
+            dfs(node.left, next_path, next_sum)
+            dfs(node.right, next_path, next_sum)
         
         dfs(root, [], 0)
         
