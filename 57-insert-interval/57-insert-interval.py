@@ -1,27 +1,17 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        res: List[List[int]] = []
+        head: List[List[int]] = []
+        tail: List[List[int]] = []
 
-        i = 0
-        
-        # Find the insertion point.
-        while i < len(intervals) and newInterval[0] > intervals[i][1]:
-            res.append(intervals[i])
-            i += 1
+        start, end = newInterval
 
-        if i == len(intervals):
-            return res + [newInterval]
-        
-        # Build the correct new interval.
-        start = min(intervals[i][0], newInterval[0])
-        end = newInterval[1]
-        
-        while i < len(intervals) and newInterval[1] >= intervals[i][0]:
-            end = max(intervals[i][1], end)
-            i += 1
-        res.append([start, end])
-        
-        # Handle leftovers.
-        res.extend(intervals[i:])
+        for i in intervals:
+            if start > i[1]:
+                head.append(i)
+            elif end < i[0]:
+                tail.append(i)
+            else:
+                start = min(start, i[0])
+                end = max(end, i[1])
 
-        return res
+        return [*head, [start, end], *tail]
