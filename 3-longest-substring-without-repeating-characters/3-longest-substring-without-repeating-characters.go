@@ -1,20 +1,18 @@
 func lengthOfLongestSubstring(s string) int {
     counts := make(map[byte]int)
     head := 0
-    tail := 0
     maxLen := 0
     
-    for i := 0; i < len(s); i++ {
-        c := s[i]
+    for tail := 0; tail < len(s); tail++ {
+        c := s[tail]
         
         counts[c] += 1
-        tail += 1
         
         for counts[c] > 1 {
             counts[s[head]] -= 1
             head += 1
         }
-        maxLen = max(maxLen, tail - head)
+        maxLen = max(maxLen, tail - head + 1)
     }
     
     return maxLen
