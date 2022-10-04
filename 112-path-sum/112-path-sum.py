@@ -13,6 +13,6 @@ class Solution:
             return root.val == targetSum
         
         return (
-            self.hasPathSum(root.left, targetSum - root.val) or 
-            self.hasPathSum(root.right, targetSum - root.val)
+            (root.left and self.hasPathSum(root.left, targetSum - root.val)) or 
+            (root.right and self.hasPathSum(root.right, targetSum - root.val))
         )
