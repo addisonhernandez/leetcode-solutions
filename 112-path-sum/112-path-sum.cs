@@ -25,7 +25,8 @@ public class Solution
             return root.val == targetSum;
         }
         
-        return (root.left != null && HasPathSum(root.left, targetSum - root.val)) ||
-            (root.right != null && HasPathSum(root.right, targetSum - root.val));
+        return 
+            HasPathSum(root.left, targetSum - root.val) ||
+            HasPathSum(root.right, targetSum - root.val);
     }
 }
