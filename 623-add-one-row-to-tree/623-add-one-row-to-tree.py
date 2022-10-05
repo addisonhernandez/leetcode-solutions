@@ -23,9 +23,8 @@ class Solution:
         
         level = [root]
         
-        while depth > 2:
+        for _ in range(2, depth):
             level = [child for node in level for child in (node.left, node.right) if child is not None]
-            depth -= 1
         
         for node in level:
             node.left = TreeNode(val, node.left, None)
