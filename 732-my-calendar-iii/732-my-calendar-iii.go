@@ -2,13 +2,11 @@ import "github.com/emirpasic/gods/maps/treemap"
 
 
 type MyCalendarThree struct {
-    // Bookings map[int]int
     Bookings *treemap.Map
 }
 
 
 func Constructor() MyCalendarThree {
-    // return MyCalendarThree{make(map[int]int)}
     return MyCalendarThree{treemap.NewWithIntComparator()}
 }
 
@@ -27,12 +25,13 @@ func (this *MyCalendarThree) Book(start int, end int) int {
     this.Bookings.Put(end, count.(int) - 1)
     
     max, sweepcount := 0, 0
-    for _, count := range this.Bookings.Values() {
+    // for _, count := range this.Bookings.Values() {
+    this.Bookings.Each(func (_, count interface{}) {
         sweepcount += count.(int)
         if sweepcount > max {
             max = sweepcount
         }
-    }
+    })
     return max
 }
 
