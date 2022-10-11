@@ -45,24 +45,3 @@ var threeSumClosest = function(nums, target) {
     
     return threeSum
 };
-/*
-    for i in range(n - 2):
-        j = i + 1
-        k = n - 1
-
-        while j < k:
-            ijk_sum = nums[i] + nums[j] + nums[k]
-
-            if abs(target - ijk_sum) < diff:
-                if ijk_sum == target:
-                    return ijk_sum
-                diff = abs(target - ijk_sum)
-                three_sum = ijk_sum
-
-            if ijk_sum < target:
-                j += 1
-            elif ijk_sum > target:
-                k -= 1
-
-    return three_sum
-*/
