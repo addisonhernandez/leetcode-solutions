@@ -8,11 +8,10 @@ func reverse(x int) int {
     
     for x > 0 {
         rev = (10 * rev) + (x % 10)
-        if rev > max || rev < min {
-            return 0
-        }
         x /= 10
     }
-    
+    if rev > max || rev < min {
+        return 0
+    }    
     return rev
 }
