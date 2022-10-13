@@ -6,7 +6,4 @@
 
 class Solution:
     def deleteNode(self, node: ListNode) -> None:
-        while node.next is not None:
-            node.val = node.next.val
-            prev, node = node, node.next
-        prev.next = None
+        node.val, node.next = node.next.val, node.next.next
