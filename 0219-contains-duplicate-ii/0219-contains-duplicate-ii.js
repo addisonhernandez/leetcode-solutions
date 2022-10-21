@@ -5,19 +5,13 @@
  */
 var containsNearbyDuplicate = function (nums, k) {
   const intervalNums = new Set()
-  for (let i = 0; i < k && i < nums.length; i++) {
+  
+  for (let i = 0; i < nums.length; i++) {
     if (intervalNums.has(nums[i])) {
       return true
     }
     intervalNums.add(nums[i])
-  }
-
-  for (let i = k; i < nums.length; i++) {
-    if (intervalNums.has(nums[i])) {
-      return true
-    }
-    intervalNums.add(nums[i])
-    intervalNums.delete(nums[i - k])
+    i >= k && intervalNums.delete(nums[i - k])
   }
 
   return false
