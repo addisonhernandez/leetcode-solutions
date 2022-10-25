@@ -27,9 +27,9 @@ const arrayStringsAreEqual = function (word1, word2) {
  * @yield {string}
  */
 const yieldChars = function* (wordlist) {
-  for (const word of wordlist) {
-    for (const char of word) {
-      yield char
+  for (let i = 0; i < wordlist.length; i++) {
+    for (let j = 0; j < wordlist[i].length; j++) {
+      yield wordlist[i][j]
     }
   }
 }
