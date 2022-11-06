@@ -2,6 +2,9 @@ class Solution:
     def orderlyQueue(self, s: str, k: int) -> str:
         if k > 1:
             return "".join(sorted(s))
+        
+        if len(s) < 100:
+            return min(s[i:] + s[:i] for i in range(len(s)))
 
         # https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation#Booth's_Algorithm
         s += s
