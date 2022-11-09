@@ -15,9 +15,9 @@ func Constructor() StockSpanner {
 func (this *StockSpanner) Next(price int) int {
     span := 1
     
-    for len(this.Quotes) > 0 && price >= this.Quotes[len(this.Quotes) - 1].Price {
-        span += this.Quotes[len(this.Quotes) - 1].Span
-        this.Quotes = this.Quotes[: len(this.Quotes) - 1]
+    for n := len(this.Quotes) - 1; n >= 0 && price >= this.Quotes[n].Price; n-- {
+        span += this.Quotes[n].Span
+        this.Quotes = this.Quotes[:n]
     }
     
     this.Quotes = append(this.Quotes, Quote{Price: price, Span: span})
