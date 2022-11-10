@@ -1,6 +1,3 @@
-from itertools import groupby
-
-
 class Solution:
     def removeDuplicates(self, s: str) -> str:
         """Naive O(n^2) recursive"""
@@ -13,9 +10,9 @@ class Solution:
         res = []
         
         for c in s:
-            if not res or c != res[-1]:
-                res.append(c)
-            else:
+            if res and c == res[-1]:
                 res.pop()
+            else:
+                res.append(c)
         
         return "".join(res)
