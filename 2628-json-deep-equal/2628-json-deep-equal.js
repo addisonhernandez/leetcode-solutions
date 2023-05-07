@@ -9,7 +9,7 @@ var areDeeplyEqual = function(o1, o2) {
         isObject(o1) &&
         Array.isArray(o1) === Array.isArray(o2) &&
         Object.keys(o1).length === Object.keys(o2).length &&
-        Object.keys(o1).every((key) => areDeeplyEqual(o1[key], o2[key]))
+        Object.keys(o1).every((key) => key in o2 && areDeeplyEqual(o1[key], o2[key]))
     );
 };
 
