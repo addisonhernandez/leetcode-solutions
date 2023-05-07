@@ -8,7 +8,7 @@ var debounce = function(fn, t) {
     
     return function(...args) {
         clearTimeout(timer);
-        timer = setTimeout(() => fn(...args), t);
+        timer = setTimeout(fn, t, ...args);
     }
 };
 
