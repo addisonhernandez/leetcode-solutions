@@ -5,7 +5,7 @@
  * @return {number}
  */
 var reduce = function(nums, fn, init) {
-    let result = init;
+    let result = init ?? nums.shift();
     
     nums.forEach((num) => {
         result = fn(result, num);
